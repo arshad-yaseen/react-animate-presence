@@ -1,0 +1,58 @@
+{
+  "name": "react-animate-presence",
+  "version": "0.1.0",
+  "description": "A React hook for managing enter/exit animations with CSS classes",
+  "main": "./build/index.js",
+  "module": "./build/index.mjs",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts",
+    "dev": "tsup src/index.ts --watch",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "lint:test": "pnpm -C test lint",
+    "format": "prettier --write .",
+    "pre-commit": "pnpm type-check && pnpm lint && pnpm lint:test",
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
+    "@types/node": "^20",
+    "@types/react": "^18.2.69",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "release-it": "^17.2.1",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3"
+  },
+  "keywords": [
+    "react",
+    "framer-motion",
+    "animation",
+    "presence",
+    "hook"
+  ],
+  "homepage": "https://use-animate-presence.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arshad-yaseen/use-animate-presence"
+  },
+  "maintainers": [
+    {
+      "name": "Arshad Yaseen",
+      "email": "m@arshadyaseen.com",
+      "url": "https://arshadyaseen.com"
+    }
+  ],
+  "license": "MIT",
+  "author": "Arshad Yaseen <m@arshadyaseen.com>"
+}
