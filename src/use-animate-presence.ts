@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useRef, useState} from 'react';
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 
 import {UseAnimatePresenceProps, UseAnimatePresenceReturn} from './types';
 
@@ -33,27 +33,25 @@ const useAnimatePresence = ({
   animation,
   onExitComplete,
 }: UseAnimatePresenceProps): UseAnimatePresenceReturn => {
-  const [animationClassName, setAnimationClassName] = useState(
-    defaultVisible ? animation.enter : animation.exit,
-  );
-  const [visible, setVisible] = useState(defaultVisible);
+  const [state, setState] = useState(() => ({
+    animationClassName: defaultVisible ? animation.enter : animation.exit,
+    visible: defaultVisible,
+  }));
+
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (defaultVisible) {
-      setVisible(true);
-      setAnimationClassName(animation.enter);
-    } else {
-      setAnimationClassName(animation.exit);
-    }
+    setState({
+      animationClassName: defaultVisible ? animation.enter : animation.exit,
+      visible: defaultVisible,
+    });
   }, [defaultVisible, animation.enter, animation.exit]);
 
   const handleAnimationEnd = useCallback(() => {
     if (!defaultVisible) {
-      setVisible(false);
-      onExitComplete?.();
+      setState(prevState => ({...prevState, visible: false}));
     }
-  }, [defaultVisible, onExitComplete]);
+  }, [defaultVisible]);
 
   useEffect(() => {
     const element = ref.current;
@@ -65,11 +63,20 @@ const useAnimatePresence = ({
     }
   }, [handleAnimationEnd]);
 
-  return {
-    ref,
-    animationClassName,
-    visible,
-  };
+  useEffect(() => {
+    if (!state.visible && !defaultVisible) {
+      onExitComplete?.();
+    }
+  }, [state.visible, defaultVisible, onExitComplete]);
+
+  return useMemo(
+    () => ({
+      ref,
+      animationClassName: state.animationClassName,
+      visible: state.visible,
+    }),
+    [state.animationClassName, state.visible],
+  );
 };
 
 export default useAnimatePresence;
