@@ -13,9 +13,8 @@
     "dev": "tsup src/index.ts --watch",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx --fix",
-    "lint:test": "pnpm -C test lint",
     "format": "prettier --write .",
-    "pre-commit": "pnpm type-check && pnpm lint && pnpm lint:test",
+    "pre-commit": "npm run type-check && npm run lint",
     "release": "release-it"
   },
   "devDependencies": {
