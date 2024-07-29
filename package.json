@@ -1,6 +1,6 @@
 {
   "name": "react-animate-presence",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A React hook for managing enter/exit animations with CSS classes",
   "main": "./build/index.js",
   "module": "./build/index.mjs",
