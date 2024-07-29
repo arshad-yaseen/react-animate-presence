@@ -3,15 +3,17 @@ import React from 'react';
 import {UseAnimatePresenceProps, UseAnimatePresenceReturn} from './types';
 
 /**
- * A hook for managing enter/exit animations with CSS classes.
+ * A custom hook for managing enter/exit animations with CSS classes.
  *
- * @param props - The configuration options for the hook
- * @returns An object containing the ref, animation class name, and visibility state
+ * @template T - The type of the HTML element to be animated (default: HTMLDivElement)
+ * @param {UseAnimatePresenceProps} props - The configuration options for the hook
+ * @returns {UseAnimatePresenceReturn<T>} An object containing the ref, animation class name, and visibility state
  *
  * @example
- * const MyComponent = () => {
- *   const { ref, animationClassName, visible } = useAnimatePresence({
- *     defaultVisible: true,
+ * function MyComponent() {
+ *   const [isVisible, setIsVisible] = useState(true);
+ *   const { ref, animationClassName, isRendered } = useAnimatePresence({
+ *     visible: isVisible,
  *     animation: {
  *       enter: 'fade-in',
  *       exit: 'fade-out',
@@ -20,38 +22,48 @@ import {UseAnimatePresenceProps, UseAnimatePresenceReturn} from './types';
  *   });
  *
  *   return (
- *     visible && (
- *       <div ref={ref} className={animationClassName}>
- *         Fade in/out content
- *       </div>
- *     )
+ *     <>
+ *       <button onClick={() => setIsVisible(!isVisible)}>Toggle</button>
+ *       {isRendered && (
+ *         <div ref={ref} className={animationClassName}>
+ *           Fade in/out content
+ *         </div>
+ *       )}
+ *     </>
  *   );
  * };
  */
-const useAnimatePresence = ({
-  defaultVisible = false,
+const useAnimatePresence = <T extends HTMLElement = HTMLDivElement>({
+  visible = false,
   animation,
   onExitComplete,
-}: UseAnimatePresenceProps): UseAnimatePresenceReturn => {
-  const [state, setState] = React.useState(() => ({
-    animationClassName: defaultVisible ? animation.enter : animation.exit,
-    visible: defaultVisible,
-  }));
+}: UseAnimatePresenceProps): UseAnimatePresenceReturn<T> => {
+  const [isRendered, setIsRendered] = React.useState(visible);
+  const [animationClassName, setAnimationClassName] = React.useState(
+    visible ? animation.enter : '',
+  );
 
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = React.useRef<T>(null);
+  const isExitingRef = React.useRef(false);
 
   React.useEffect(() => {
-    setState({
-      animationClassName: defaultVisible ? animation.enter : animation.exit,
-      visible: defaultVisible,
-    });
-  }, [defaultVisible, animation.enter, animation.exit]);
+    if (visible) {
+      isExitingRef.current = false;
+      setIsRendered(true);
+      setAnimationClassName(animation.enter);
+    } else {
+      isExitingRef.current = true;
+      setAnimationClassName(animation.exit);
+    }
+  }, [visible, animation]);
 
   const handleAnimationEnd = React.useCallback(() => {
-    if (!defaultVisible) {
-      setState(prevState => ({...prevState, visible: false}));
+    if (isExitingRef.current) {
+      onExitComplete?.();
+      setIsRendered(false);
+      isExitingRef.current = false;
     }
-  }, [defaultVisible]);
+  }, [onExitComplete]);
 
   React.useEffect(() => {
     const element = ref.current;
@@ -63,19 +75,13 @@ const useAnimatePresence = ({
     }
   }, [handleAnimationEnd]);
 
-  React.useEffect(() => {
-    if (!state.visible && !defaultVisible) {
-      onExitComplete?.();
-    }
-  }, [state.visible, defaultVisible, onExitComplete]);
-
   return React.useMemo(
     () => ({
       ref,
-      animationClassName: state.animationClassName,
-      visible: state.visible,
+      animationClassName,
+      isRendered,
     }),
-    [state.animationClassName, state.visible],
+    [animationClassName, isRendered],
   );
 };
 
