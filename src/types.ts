@@ -17,7 +17,7 @@ export interface UseAnimatePresenceProps {
 
 export interface UseAnimatePresenceReturn {
   /** Ref to be attached to the element that will be animated */
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLElement>;
   /** Current animation class name */
   animationClassName: string;
   /** Whether the element is visible in the DOM */
