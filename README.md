@@ -1,6 +1,6 @@
 # react-animate-presence
 
-A lightweight and flexible React hook for managing enter/exit animations with CSS classes. Easily add smooth transitions to your components as they mount and unmount.
+A lightweight and flexible React hook for managing enter/exit animations with CSS classes or Tailwind CSS. Easily add smooth transitions to your components as they mount and unmount.
 
 ## Features
 
@@ -8,6 +8,8 @@ A lightweight and flexible React hook for managing enter/exit animations with CS
 - 🎨 Works with custom CSS classes and Tailwind CSS
 - 🔄 Smooth transitions between mount and unmount states
 - 🎭 Customizable animation durations and styles
+
+Check out the [demo here](https://react-animate-presence.vercel.app).
 
 ## Installation
 
@@ -26,6 +28,7 @@ import useAnimatePresence from 'react-animate-presence';
 
 function MyComponent() {
   const [isVisible, setIsVisible] = useState(true);
+
   const {ref, animationClassName, isRendered} = useAnimatePresence({
     visible: isVisible,
     animation: {
@@ -149,4 +152,4 @@ useAnimatePresence<T extends HTMLElement = HTMLDivElement>(props: UseAnimatePres
 
 For guidelines on contributing, Please read the [contributing guide](https://github.com/arshad-yaseen/react-animate-presence/blob/main/CONTRIBUTING.md).
 
-We welcome contributions from the community to enhance react-amimate-presence capabilities and make it even more powerful ❤️
+We welcome contributions from the community to enhance react-animate-presence capabilities and make it even more powerful ❤️
