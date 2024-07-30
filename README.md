@@ -10,7 +10,7 @@ A lightweight and flexible React hook for managing enter/exit animations with CS
 
 ## The problem
 
-While animating a modal opening in React is straightforward, adding closing animations is challenging. Exit animations are tricky because components typically unmount immediately. A common workaround is keeping the element mounted, but this can impact performance and accessibility, as hidden interactive elements may remain focusable.
+While animating a modal opening in React is straightforward, adding closing animations is challenging. Exit animations are tricky because components typically unmount immediately. A common workaround is keeping the element mounted, but this can impact performance and accessibility.
 
 ## The solution
 
