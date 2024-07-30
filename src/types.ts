@@ -12,14 +12,14 @@ export interface AnimationConfig {
  * Props for the useAnimatePresence hook.
  */
 export interface UseAnimatePresenceProps {
-  /** Animation class names for enter and exit states */
+  /** Object containing enter and exit animation class names */
   animation: AnimationConfig;
   /**
-   * Whether the element is visible or not
+   * Whether the element should be visible
    * @default false
    */
   visible?: boolean;
-  /** Optional callback function to be called when the exit animation completes */
+  /** Optional callback function called when exit animation completes */
   onExitComplete?: () => void;
 }
 
@@ -27,7 +27,7 @@ export interface UseAnimatePresenceProps {
  * Return type for the useAnimatePresence hook.
  */
 export interface UseAnimatePresenceReturn<T = HTMLDivElement> {
-  /** Ref to be attached to the element that will be animated */
+  /** Ref to be attached to the animated element */
   ref: React.RefObject<T>;
   /** Current animation class name */
   animationClassName: string;
