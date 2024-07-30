@@ -41,10 +41,10 @@
     "presence",
     "hook"
   ],
-  "homepage": "https://use-animate-presence.vercel.app",
+  "homepage": "https://react-animate-presence.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/arshad-yaseen/use-animate-presence"
+    "url": "https://github.com/arshad-yaseen/react-animate-presence"
   },
   "maintainers": [
     {
