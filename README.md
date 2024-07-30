@@ -14,7 +14,7 @@ While animating a modal opening in React is straightforward, adding closing anim
 
 ## The solution
 
-react-animate-presence.
+**react-animate-presence** solves this issue by managing both enter and exit animations efficiently.
 
 Check out the [demo here](https://react-animate-presence.vercel.app).
 
