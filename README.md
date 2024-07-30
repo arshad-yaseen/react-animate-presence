@@ -125,7 +125,7 @@ const {ref, animationClassName, isRendered} = useAnimatePresence({
 
 ## API
 
-### `useAnimatePresence<T extends HTMLElement = HTMLDivElement>(props: UseAnimatePresenceProps): UseAnimatePresenceReturn<T>`
+`useAnimatePresence<T extends HTMLElement = HTMLDivElement>(props: UseAnimatePresenceProps): UseAnimatePresenceReturn<T>`
 
 #### Props
 
