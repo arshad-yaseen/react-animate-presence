@@ -2,6 +2,14 @@
 
 A lightweight and flexible React hook for managing enter/exit animations with CSS classes or Tailwind CSS. Easily add smooth transitions to your components as they mount and unmount.
 
+## The problem
+
+While animating a modal opening in React is straightforward, adding closing animations is challenging. Exit animations are tricky because components typically unmount immediately. A common workaround is keeping the element mounted, but this can impact performance and accessibility, as hidden interactive elements may remain focusable.
+
+## The solution
+
+react-animate-presence.
+
 Check out the [demo here](https://react-animate-presence.vercel.app).
 
 ## Installation
