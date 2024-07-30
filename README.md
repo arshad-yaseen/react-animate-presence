@@ -2,6 +2,8 @@
 
 A lightweight and flexible React hook for managing enter/exit animations with CSS classes or Tailwind CSS. Easily add smooth transitions to your components as they mount and unmount.
 
+## Features
+
 - 🚀 Simple hook for managing enter/exit animations
 - 🎨 Works with any custom CSS animations and Tailwind CSS animations
 - 🔄 Smooth transitions between mount and unmount states
