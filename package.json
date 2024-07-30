@@ -11,10 +11,11 @@
   "scripts": {
     "build": "tsup src/index.ts",
     "dev": "tsup src/index.ts --watch",
+    "dev:test": "pnpm -C test dev",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write .",
-    "pre-commit": "npm run type-check && npm run lint",
+    "pre-commit": "pnpm type-check && pnpm lint",
     "release": "release-it"
   },
   "devDependencies": {

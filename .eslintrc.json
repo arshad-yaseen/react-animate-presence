@@ -21,7 +21,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "ignorePatterns": ["node_modules/", "build/", "/tsup.config.ts"],
+  "ignorePatterns": ["node_modules/", "build/", "/tsup.config.ts", "/test"],
   "plugins": ["@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "warn",

@@ -6,9 +6,9 @@ First off, thank you for considering contributing to react-animate-presence! It'
 
 1. Fork the repo
 2. Clone your fork
-3. Run `npm install`
-4. Run `npm run dev` to build and automatically rebuild when you make changes.
-5. Run `npm run dev:test` to start the Next.js app and test your changes.
+3. Run `pnpm install`
+4. Run `pnpm dev` to build and automatically rebuild when you make changes.
+5. Run `pnpm dev:test` to start the Next.js app and test your changes.
 
 ## Running Tests
 

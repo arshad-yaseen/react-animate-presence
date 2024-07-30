@@ -17,6 +17,6 @@ module.exports = {
     publish: true,
   },
   hooks: {
-    'before:init': ['npm run build', 'npm run pre-commit'],
+    'before:init': ['pnpm build', 'pnpm pre-commit'],
   },
 };
