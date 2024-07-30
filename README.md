@@ -22,7 +22,7 @@ npm install react-animate-presence
 ### Basic Example
 
 ```jsx
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 import useAnimatePresence from 'react-animate-presence';
 
