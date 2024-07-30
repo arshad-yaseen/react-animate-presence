@@ -1,3 +1,6 @@
+/**
+ * Animation config object.
+ */
 export interface AnimationConfig {
   /** CSS animation class for the enter animation */
   enter: string;
