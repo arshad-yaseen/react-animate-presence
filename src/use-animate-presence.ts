@@ -31,39 +31,37 @@ import {UseAnimatePresenceProps, UseAnimatePresenceReturn} from './types';
  *       )}
  *     </>
  *   );
- * };
+ * }
  */
 const useAnimatePresence = <T extends HTMLElement = HTMLDivElement>({
   visible = false,
   animation,
   onExitComplete,
 }: UseAnimatePresenceProps): UseAnimatePresenceReturn<T> => {
-  const [isRendered, setIsRendered] = React.useState(visible);
-  const [animationClassName, setAnimationClassName] = React.useState(
-    visible ? animation.enter : '',
-  );
+  const [state, setState] = React.useState({
+    isRendered: visible,
+    animationClassName: visible ? animation.enter : '',
+  });
 
   const ref = React.useRef<T>(null);
-  const isExitingRef = React.useRef(false);
+  const prevVisibleRef = React.useRef(visible);
 
   React.useEffect(() => {
-    if (visible) {
-      isExitingRef.current = false;
-      setIsRendered(true);
-      setAnimationClassName(animation.enter);
-    } else {
-      isExitingRef.current = true;
-      setAnimationClassName(animation.exit);
+    if (visible !== prevVisibleRef.current) {
+      setState({
+        isRendered: visible || state.isRendered,
+        animationClassName: visible ? animation.enter : animation.exit,
+      });
+      prevVisibleRef.current = visible;
     }
-  }, [visible, animation]);
+  }, [visible, animation, state.isRendered]);
 
   const handleAnimationEnd = React.useCallback(() => {
-    if (isExitingRef.current) {
+    if (!visible) {
       onExitComplete?.();
-      setIsRendered(false);
-      isExitingRef.current = false;
+      setState(prevState => ({...prevState, isRendered: false}));
     }
-  }, [onExitComplete]);
+  }, [visible, onExitComplete]);
 
   React.useEffect(() => {
     const element = ref.current;
@@ -75,14 +73,11 @@ const useAnimatePresence = <T extends HTMLElement = HTMLDivElement>({
     }
   }, [handleAnimationEnd]);
 
-  return React.useMemo(
-    () => ({
-      ref,
-      animationClassName,
-      isRendered,
-    }),
-    [animationClassName, isRendered],
-  );
+  return {
+    ref,
+    animationClassName: state.animationClassName,
+    isRendered: state.isRendered,
+  };
 };
 
 export default useAnimatePresence;
