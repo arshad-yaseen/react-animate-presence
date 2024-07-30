@@ -2,13 +2,6 @@
 
 A lightweight and flexible React hook for managing enter/exit animations with CSS classes or Tailwind CSS. Easily add smooth transitions to your components as they mount and unmount.
 
-## Features
-
-- 🚀 Simple API for managing enter/exit animations
-- 🎨 Works with custom CSS classes and Tailwind CSS
-- 🔄 Smooth transitions between mount and unmount states
-- 🎭 Customizable animation durations and styles
-
 Check out the [demo here](https://react-animate-presence.vercel.app).
 
 ## Installation
