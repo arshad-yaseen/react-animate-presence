@@ -145,6 +145,8 @@ useAnimatePresence<T extends HTMLElement = HTMLDivElement>(props: UseAnimatePres
 | `animationClassName` | `string`             | Current animation class name                      |
 | `isRendered`         | `boolean`            | Whether the element should be rendered in the DOM |
 
-## License
+## Contributing
 
-MIT © [Arshad Yaseen]
+For guidelines on contributing, Please read the [contributing guide](https://github.com/arshad-yaseen/react-animate-presence/blob/main/CONTRIBUTING.md).
+
+We welcome contributions from the community to enhance react-amimate-presence capabilities and make it even more powerful ❤️
