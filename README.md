@@ -24,7 +24,7 @@ Check out the [demo here](https://react-animate-presence.vercel.app).
 npm install react-animate-presence
 ```
 
-## `useAnimatePresence` Usage
+## Usage
 
 ### Basic Example
 
