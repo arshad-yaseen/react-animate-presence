@@ -24,7 +24,7 @@ Check out the [demo here](https://react-animate-presence.vercel.app).
 npm install react-animate-presence
 ```
 
-## useAnimatePresence Usage
+## `useAnimatePresence` Usage
 
 ### Basic Example
 
@@ -133,7 +133,7 @@ const {ref, animationClassName, isRendered} = useAnimatePresence({
 });
 ```
 
-## useAnimatePresence API
+## `useAnimatePresence` API
 
 ```typescript
 useAnimatePresence<T extends HTMLElement = HTMLDivElement>(props: UseAnimatePresenceProps): UseAnimatePresenceReturn<T>
