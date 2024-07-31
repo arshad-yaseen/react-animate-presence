@@ -141,19 +141,20 @@ useAnimatePresence<T extends HTMLElement = HTMLDivElement>(props: UseAnimatePres
 
 #### Props
 
-| Prop             | Type              | Default | Description                                                     |
-| ---------------- | ----------------- | ------- | --------------------------------------------------------------- |
-| `visible`        | `boolean`         | `false` | Whether the element should be visible                           |
-| `animation`      | `AnimationConfig` | -       | Object containing enter and exit animation class names          |
-| `onExitComplete` | `() => void`      | -       | Optional callback function called when exit animation completes |
+| Prop             | Type              | Default | Description                                               |
+| ---------------- | ----------------- | ------- | --------------------------------------------------------- |
+| `visible`        | `boolean`         | `false` | Controls the visibility of the element                    |
+| `animation`      | `AnimationConfig` | -       | Defines CSS class names for enter and exit animations     |
+| `onExitComplete` | `() => void`      | -       | Optional callback triggered when exit animation completes |
 
 #### Returns
 
-| Property             | Type                 | Description                                       |
-| -------------------- | -------------------- | ------------------------------------------------- |
-| `ref`                | `React.RefObject<T>` | Ref to be attached to the animated element        |
-| `animationClassName` | `string`             | Current animation class name                      |
-| `isRendered`         | `boolean`            | Whether the element should be rendered in the DOM |
+| Property             | Type                 | Description                                                 |
+| -------------------- | -------------------- | ----------------------------------------------------------- |
+| `ref`                | `React.RefObject<T>` | React ref to be attached to the animated element            |
+| `animationClassName` | `string`             | Current active animation class name                         |
+| `isRendered`         | `boolean`            | Indicates if the element should be rendered in the DOM      |
+| `isExiting`          | `boolean`            | Indicates if the element is currently in its exit animation |
 
 ## Contributing
 
