@@ -1,4 +1,7 @@
-export {default as useAnimatePresence} from './use-animate-presence';
+import useAnimatePresence from './use-animate-presence';
+
+export {useAnimatePresence};
+
 export type {
   UseAnimatePresenceProps,
   UseAnimatePresenceReturn,

@@ -41,6 +41,7 @@ const useAnimatePresence = <T extends HTMLElement = HTMLDivElement>({
   const [state, setState] = React.useState({
     isRendered: visible,
     animationClassName: visible ? animation.enter : '',
+    isExiting: false,
   });
 
   const ref = React.useRef<T>(null);
@@ -48,10 +49,12 @@ const useAnimatePresence = <T extends HTMLElement = HTMLDivElement>({
 
   React.useEffect(() => {
     if (visible !== prevVisibleRef.current) {
-      setState({
+      setState(prevState => ({
+        ...prevState,
+        ...(!visible && {isExiting: true}),
         isRendered: visible || state.isRendered,
         animationClassName: visible ? animation.enter : animation.exit,
-      });
+      }));
       prevVisibleRef.current = visible;
     }
   }, [visible, animation, state.isRendered]);
@@ -59,7 +62,11 @@ const useAnimatePresence = <T extends HTMLElement = HTMLDivElement>({
   const handleAnimationEnd = React.useCallback(() => {
     if (!visible) {
       onExitComplete?.();
-      setState(prevState => ({...prevState, isRendered: false}));
+      setState(prevState => ({
+        ...prevState,
+        isRendered: false,
+        isExiting: false,
+      }));
     }
   }, [visible, onExitComplete]);
 
@@ -77,6 +84,7 @@ const useAnimatePresence = <T extends HTMLElement = HTMLDivElement>({
     ref,
     animationClassName: state.animationClassName,
     isRendered: state.isRendered,
+    isExiting: state.isExiting,
   };
 };
 

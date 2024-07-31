@@ -31,7 +31,7 @@ npm install react-animate-presence
 ```jsx
 import {useState} from 'react';
 
-import useAnimatePresence from 'react-animate-presence';
+import {useAnimatePresence} from 'react-animate-presence';
 
 function MyComponent() {
   const [isVisible, setIsVisible] = useState(true);

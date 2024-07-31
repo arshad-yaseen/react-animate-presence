@@ -7,7 +7,7 @@ import {useAnimatePresence} from 'react-animate-presence';
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
 
-  const {ref, animationClassName, isRendered} = useAnimatePresence({
+  const {ref, animationClassName, isRendered, isExiting} = useAnimatePresence({
     visible: isVisible,
     animation: {
       enter: 'animate-slide-in',
@@ -17,6 +17,33 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen w-screen flex-col items-center md:pt-40 pt-20 space-y-5 px-5">
+      <div className="flex space-x-4 p-4 bg-neutral-50 border border-neutral-200 rounded-lg">
+        <div className="flex flex-col items-start">
+          <span className="text-sm font-semibold text-neutral-700">
+            isRendered:
+          </span>
+          <span
+            className={`text-md ${isRendered ? 'text-green-600' : 'text-red-600'}`}>
+            {isRendered ? 'True' : 'False'}
+          </span>
+        </div>
+        <div className="flex flex-col items-start">
+          <span className="text-sm font-semibold text-neutral-700">
+            IsExiting:
+          </span>
+          <span
+            className={`text-md ${isExiting ? 'text-green-600' : 'text-red-600'}`}>
+            {isExiting ? 'True' : 'False'}
+          </span>
+        </div>
+        <div className="flex flex-col items-start">
+          <span className="text-sm font-semibold text-neutral-700">
+            animationClassName:
+          </span>
+          <span className="text-md text-blue-600">{animationClassName}</span>
+        </div>
+      </div>
+
       <button
         className="px-4 py-2 bg-blue-500 text-white rounded-md"
         onClick={() => setIsVisible(!isVisible)}>
